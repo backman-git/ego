@@ -26,7 +26,7 @@ vm_name = "ego-#{arch}-vm"
 Vagrant.configure("2") do |config|
   case arch
   when "amd64"
-    config.vm.box = "ubuntu/bionic64"      
+    config.vm.box = "ubuntu/focal64"      
   when "arm64"
     config.vm.box = "bento/ubuntu-22.04-arm64"
   end
