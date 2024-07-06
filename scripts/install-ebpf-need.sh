@@ -2,11 +2,21 @@
 
 set -eux
 
+#mkdir /etc/gcrypt
+#echo all >> /etc/gcrypt/hwf.deny
+#apt-get update
+
+
 sudo apt-get update
+sudo apt upgrade
+
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh 17 all
+
 sudo apt-get install -y bpfcc-tools "linux-headers-$(uname -r)"
 sudo apt-get install -y zsh
-apt install -y libbpf-dev
-
+sudo apt-get install -y libbpf-dev
 
 sudo apt install -y  pkg-config
 sudo apt-get install -y zlib1g-dev
@@ -33,11 +43,10 @@ echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.zshrc
 
 
 
-wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-sudo ./llvm.sh 15 all
 
-sudo apt install -y zip bison build-essential cmake flex git libedit-dev python zlib1g-dev libelf-dev libfl-dev python3-setuptools liblzma-dev arping netperf iperf
+
+sudo apt --fix-broken install
+sudo apt install -y zip bison build-essential cmake flex git libedit-dev  zlib1g-dev libelf-dev libfl-dev python3-setuptools liblzma-dev arping netperf iperf 
 
 git clone --recurse-submodules https://github.com/libbpf/bpftool.git
 cd ./bpftool/src && sudo make install

@@ -26,11 +26,17 @@ vm_name = "ego-#{arch}-vm"
 Vagrant.configure("2") do |config|
   case arch
   when "amd64"
-    config.vm.box = "ubuntu/focal64"      
+     config.vm.box = "bento/ubuntu-24.04"
+     config.vm.box_version = "202404.26.0"
   when "arm64"
     config.vm.box = "bento/ubuntu-22.04-arm64"
   end
 
+  
+  config.vm.provider "virtualbox" do |vb|
+    # Customize the amount of memory on the VM:
+
+  end
 
 
   config.vm.provision :shell, :privileged => false, :path => "scripts/install-ebpf-need.sh"
